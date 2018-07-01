@@ -1,3 +1,21 @@
+/**
+ * @author Jaewoong Kang (B00779368)
+ * @version 0.8
+ *
+ * This is for CSCI 3130 Assignment 3
+ * Base codes were folked from https://github.com/jmfranz/A3csci3130
+ *
+ * Basically, this is for CRUD form for the data which is stored into Firebase
+ *
+ * I regarded "" element in province as the case user could figure out the exact provice
+ * Therefore, I added it as "Unknown in spinner, but it is stored in Firebase as ""
+ * For Business ID, in order to make it as unique integer value, I used the estimated time in second
+ *  between 2018-06-30 20:00:00 and current time.
+ * As a result, this app can generate unique key during  around 32 years
+ *
+ * Reference for Firebase validation rule from https://firebase.google.com/docs/reference/security/database/regex
+ */
+
 package com.acme.a3csci3130;
 
 import android.app.Activity;
@@ -52,12 +70,14 @@ public class MainActivity extends Activity {
         });
     }
 
+    //For intenting to CreateContact Activity
     public void createContactButton(View v)
     {
         Intent intent=new Intent(this, CreateContactAcitivity.class);
         startActivity(intent);
     }
 
+    //Intenting to DetailView activity with the specified contact
     private void showDetailView(Contact person)
     {
         Intent intent = new Intent(this, DetailViewActivity.class);
