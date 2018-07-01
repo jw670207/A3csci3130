@@ -31,6 +31,7 @@ public class DetailViewActivity extends Activity {
         spinnerBus = (Spinner) findViewById(R.id.business);
         spinnerPro = (Spinner) findViewById(R.id.province);
 
+        //ArrayAdapter for Spinner
         ArrayAdapter <CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.Businesses, android.R.layout.simple_spinner_item);
         ArrayAdapter <CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.provinces, android.R.layout.simple_spinner_item);
 
@@ -40,6 +41,7 @@ public class DetailViewActivity extends Activity {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPro.setAdapter(adapter2);
 
+        //If province value is null, then display "Unknown" in spinner as intial value
         if(receivedPersonInfo != null){
             nameField.setText(receivedPersonInfo.name);
             emailField.setText(receivedPersonInfo.email);
@@ -49,19 +51,21 @@ public class DetailViewActivity extends Activity {
             }
             spinnerBus.setSelection(adapter1.getPosition(receivedPersonInfo.business));
             spinnerPro.setSelection(adapter2.getPosition(receivedPersonInfo.province));
-
         }
-
     }
 
     public void updateContact(View v){
 
-        //TODO: Update contact funcionality
+        //If user chose "Unknown", then put "" into Firebase
+        String prov = spinnerPro.getSelectedItem().toString();
+        if (prov.equals("Unknown")){
+            prov = "";
+        }
         receivedPersonInfo.name = nameField.getText().toString();
         receivedPersonInfo.email = emailField.getText().toString();
         receivedPersonInfo.address = addressField.getText().toString();
         receivedPersonInfo.business = spinnerBus.getSelectedItem().toString();
-        receivedPersonInfo.province = spinnerPro.getSelectedItem().toString();
+        receivedPersonInfo.province = prov;
 
         Map<String, Object> updates = receivedPersonInfo.toMap();
         appState.firebaseReference.child(receivedPersonInfo.bid).updateChildren(updates);
@@ -71,7 +75,6 @@ public class DetailViewActivity extends Activity {
 
     public void eraseContact(View v)
     {
-        //TODO: Erase contact functionality
         appState.firebaseReference.child(receivedPersonInfo.bid).removeValue();
         finish();
     }

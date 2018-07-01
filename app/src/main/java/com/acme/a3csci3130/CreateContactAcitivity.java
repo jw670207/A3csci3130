@@ -7,9 +7,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import org.joda.time.*;
+import android.widget.Toast;
 
 public class CreateContactAcitivity extends Activity {
 
@@ -46,26 +46,30 @@ public class CreateContactAcitivity extends Activity {
 
     public void submitInfoButton(View v) {
         //each entry needs a unique ID
-        //String personID = appState.firebaseReference.push().getKey();
+        Contact person;
+
         String name = nameField.getText().toString();
         String email = emailField.getText().toString();
         String address = addressField.getText().toString();
         String business = spinnerBus.getSelectedItem().toString();
         String province = spinnerPro.getSelectedItem().toString();
 
-        DateTime dateOfBirth = new DateTime(2018, 6, 30, 12, 0);
-        DateTime currentDate = new DateTime();
+        //calculate estimated time in second from 2018-06-30 20:00:00 to current time for generating unique key(business ID)
+        DateTime standard = new DateTime(2018, 6, 30, 20, 0);
+        DateTime current = new DateTime();
 
-        Seconds seconds = Seconds.secondsBetween(dateOfBirth, currentDate);
-        String times = seconds.toString();
+        Seconds seconds = Seconds.secondsBetween(standard, current);
+        String bid = Integer.toString(seconds.getSeconds());
 
-        String bid = times.substring(2, times.length() - 1);
-        for (int i =0; i < 12-bid.length(); i++ ) {
+        int length = 9-bid.length();
+
+        //if digits<9, add 0 in front of calculated value
+        for (int i =0; i<length; i++ ) {
             bid = "0"+bid;
         }
+        Toast.makeText(getApplicationContext(), bid,Toast.LENGTH_SHORT).show();
 
-        Contact person;
-
+        //If province == "Unknown", put "" into Firebase
         if (province.equals("Unknown")){
             person = new Contact(bid, name,email, address, business, "");
         }

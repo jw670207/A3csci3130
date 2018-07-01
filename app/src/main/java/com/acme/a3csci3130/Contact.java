@@ -8,8 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class that defines how the data will be stored in the
- * Firebase databse. This is converted to a JSON format
+ * All required elements of Json in Firebase
  */
 
 public class Contact implements Serializable {
