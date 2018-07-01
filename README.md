@@ -13,7 +13,7 @@ Before using Espresso test, I made all codes based on android sdk 25. Therefore,
 ## Firebase Rulere  
 For provinces and business, Spinner was used. As a result, these elements didn't, actually, needed to use specified rules.
 Therefore, I set up a simple rule for province element.  
-`
+```javascript
 {  
   "rules": {  
     ".read": "true",  
@@ -42,11 +42,11 @@ Therefore, I set up a simple rule for province element.
     }  
   }  
 }  
-`
-## Screenshot
-![alt text](https://github.com/jw670207/A3csci3130/master/screenshot.jpeg "App Screenshot")
+```
+## Screenshot  
+![alt text](https://github.com/jw670207/A3csci3130/master/screenshot.jpeg "App Screenshot")  
 
-## References
-**email validation rule** - Firebase Security Rules Regular Expressions
+## References  
+**email validation rule** - Firebase Security Rules Regular Expressions  
 [Link](https://firebase.google.com/docs/reference/security/database/regex)
   
