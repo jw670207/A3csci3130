@@ -1,7 +1,6 @@
 # A3csci3130
 
-CSCI 3130 Assignment3
-
+CSCI 3130 Assignment3  
 This is simple application of CRUD forms for Firebase Realtime database 
 
 
