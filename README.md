@@ -10,7 +10,7 @@ This app used joda time library for calculating the estimated time as the unique
 Before using Espresso test, I made all codes based on android sdk 25. Therefore, I used this library for working on low level sdk version.  
 [Joda Time website](http://www.joda.org/joda-time/)
 
-## Firebase Rulere  
+## Firebase Rules  
 For provinces and business, Spinner was used. As a result, these elements didn't, actually, needed to use specified rules.
 Therefore, I set up a simple rule for province element.  
 ```javascript
