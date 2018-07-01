@@ -44,7 +44,7 @@ Therefore, I set up a simple rule for province element.
 }  
 ```
 ## Screenshot  
-![Screenshot](Screenshots/Screenshot.jpeg "App Screenshot")  
+![Screenshot](Screenshot.jpeg "App Screenshot")  
 
 ## References  
 **email validation rule** - Firebase Security Rules Regular Expressions  
